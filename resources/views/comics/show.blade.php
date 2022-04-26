@@ -1,7 +1,7 @@
 @extends('layouts.standard')
 
 @section('content')
-  <h1>{{$comic->title}}</h1>
+  <h2>{{$comic->title}}</h2>
   <img src="{{$comic->image}}" alt="">
   <p>{{$comic->description}}</p>
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.standard')
 
 @section('content')
+  <h1>Aggiungi Comic</h1>
   <form action="{{route('comics.store')}}" method="POST">
     <div>
       <label for="name"></label>

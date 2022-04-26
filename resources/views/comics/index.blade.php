@@ -18,6 +18,7 @@
           <td>{{$comic->description}}</td>
           <td>{{$comic->price}}$</td>
           <td>{{$comic->type}}</td>
+          <td><a href="{{ route( 'comics.show',$comic->id) }}">Visualizza</a></td>
         </tr> 
       @endforeach
     </tbody>
