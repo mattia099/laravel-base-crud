@@ -1,4 +1,4 @@
-@extends('layouts.standard');
+@extends('layouts.standard')
 
 @section('content')
   @dump($comics)
@@ -16,7 +16,7 @@
         <tr>
           <td>{{$comic->title}}</td>
           <td>{{$comic->description}}</td>
-          <td>{{$comic->price}}</td>
+          <td>{{$comic->price}}$</td>
           <td>{{$comic->type}}</td>
         </tr> 
       @endforeach

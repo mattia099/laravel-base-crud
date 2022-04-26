@@ -26,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -46,9 +46,10 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function show(Comic $comic)
+    public function show($id)
     {
-        //
+        $comic = Comic::find($id);
+        return view('comics.show',compact('comic'));
     }
 
     /**
@@ -59,7 +60,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        
     }
 
     /**
