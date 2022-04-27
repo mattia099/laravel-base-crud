@@ -37,8 +37,12 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $data = $request->all(); //Permette di prendere i dati ottenuti dal form (in create)
+        $comic = new Comic;
+        $comic->fill($data);
+        $comic->save();
+        return redirect()->route('comics.show',$comic->id);
+        }
 
     /**
      * Display the specified resource.
@@ -48,7 +52,7 @@ class ComicController extends Controller
      */
     public function show($id)
     {
-        $comic = Comic::find($id);
+        $comic = Comic::find($id);//trova oggetto corrispondente all'id passato
         return view('comics.show',compact('comic'));
     }
 
@@ -60,7 +64,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        
+        return view('comics.edit',compact('comic'));
     }
 
     /**
@@ -72,7 +76,11 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        //
+        $data = $request->all();
+
+        $comic->update($data);//aggiorna value degli attributi
+
+        return redirect()->route('comics.show',compact('comic'));
     }
 
     /**
@@ -83,6 +91,7 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }
