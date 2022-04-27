@@ -1,7 +1,7 @@
 @extends('layouts.standard')
 
 @section('content')
-  @dump($comics)
+  
   <table>
 
     <thead>

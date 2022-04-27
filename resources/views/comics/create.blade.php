@@ -2,7 +2,7 @@
 
 @section('content')
   <h1>Aggiungi Comic</h1>
-  <form action="{{route('comics.store')}}" method="POST">
+  <form action="{{ route('comics.store') }}" method="POST">
     <div>
       <label for="name"></label>
       <input type="text" name="title" id="name" placeholder="Inserisci il titolo del comic">
@@ -18,7 +18,12 @@
       <input type="text" name="price" id="price" placeholder="Inserisci il prezzo">
     </div>
 
-    <button type="submit">invia</button>
+    <div>
+      <label for="type"></label>
+      <input type="text" name="type" id="type" placeholder="Inserisci il tipo">
+    </div>
+
+    <input type="submit" value="invia">
   </form>
 
 @endsection
