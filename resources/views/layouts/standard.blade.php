@@ -4,13 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <title>Document</title>
 </head>
 <body>
   <nav>
-    <li><a href="{{ route('comics.index') }}">Lista comics</a></li>
-    <li><a href="{{ route('comics.create') }}">Aggiungi comic</a></li>
+    <ul>
+      <div class="row">
+        <li class="p-3"><a href="{{ route('comics.index') }}">Lista comics</a></li>
+        <li class="p-3"><a href="{{ route('comics.create') }}">Aggiungi comic</a></li>
+      </div>
+    </ul>
   </nav>
-  @yield('content')
+  <div class="container">
+    @yield('content')
+  </div>
 </body>
 </html>

@@ -1,8 +1,9 @@
 @extends('layouts.standard')
 
 @section('content')
-  
-  <table>
+
+  <h1 class="text-uppercase">Lista comics</h1>
+  <table class="table table-striped">
 
     <thead>
       <th>Id</th>
@@ -20,20 +21,19 @@
           <td>{{$comic->description}}</td>
           <td>{{$comic->price}}$</td>
           <td>{{$comic->type}}</td>
-          <td><a href="{{ route( 'comics.show',$comic->id) }}">Visualizza</a></td>
-          <td><a href="{{ route( 'comics.edit',$comic->id) }}">Modifica</a></td>
+          <td><a class="btn btn-primary" href="{{ route( 'comics.show',$comic->id) }}">Visualizza</a></td>
+          <td><a class="btn btn-success" href="{{ route( 'comics.edit',$comic->id) }}">Modifica</a></td>
           <td>
             <form action="{{ route( 'comics.destroy',$comic->id) }}" method="POST">
               @csrf
               @method('DELETE')
-              <button type="submit">Elimina</button>
+              <button class="btn btn-danger" type="submit">Elimina</button>
             </form>
-</td>
-          
+          </td>
         </tr> 
       @endforeach
     </tbody>
-  </table>
+</table>
 
 
 @endsection
