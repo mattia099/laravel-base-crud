@@ -16,7 +16,7 @@ class ComicController extends Controller
     {
         //recupero dati dal db
         $comics = Comic::all(); //query che prende tutti i dati dal db
-        return view('comics.index',compact('comics'));
+        return view('comics.index',compact('comics')); // ritorna vista index con la lista di comics
     }
 
     /**
@@ -26,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        return view('comics.create');
+        return view('comics.create'); // ritorna solamente la vista create 
     }
 
     /**
@@ -37,12 +37,22 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:4|max:255',
+            'description' => 'required|max:500',
+            'image' => 'required|url',
+            'price' => 'required|numeric',
+            'series' => 'required|max:100',
+            'date' => 'requiered|date',
+            'type' => 'required|max:100'
+        ]);
+
         $data = $request->all(); //Permette di prendere i dati ottenuti dal form (in create)
-        $comic = new Comic;
-        $comic->fill($data);
-        $comic->save();
-        return redirect()->route('comics.show',$comic->id);
-        }
+        $comic = new Comic; //crea nuovo oggetto comic
+        $comic->fill($data); // fill è collegato a fillable nel model Comic.php
+        $comic->save(); // salva comic nel db
+        return redirect()->route('comics.show',$comic->id); //una volta creato nuovo comic ci dirotta nella vista show del comic creato (gli passiamo l'id del comic)
+    }
 
     /**
      * Display the specified resource.
@@ -52,8 +62,8 @@ class ComicController extends Controller
      */
     public function show($id)
     {
-        $comic = Comic::find($id);//trova oggetto corrispondente all'id passato
-        return view('comics.show',compact('comic'));
+        $comic = Comic::find($id);//trova oggetto corrispondente all'id passato  ( /comics/{{id}} )
+        return view('comics.show',compact('comic')); //ritorna vista del comic (passato come parametro stringa)
     }
 
     /**
@@ -64,7 +74,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        return view('comics.edit',compact('comic'));
+        return view('comics.edit',compact('comic')); //ritorna vista edit del comic 
     }
 
     /**
@@ -76,9 +86,9 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $data = $request->all();
+        $data = $request->all(); //stesso meccanisco di create
 
-        $comic->update($data);//aggiorna value degli attributi
+        $comic->update($data);//aggiorna value degli attributi (simile al save in create)
 
         return redirect()->route('comics.show',compact('comic'));
     }
