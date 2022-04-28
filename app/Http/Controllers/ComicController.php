@@ -86,6 +86,15 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $request->validate([
+            'title' => 'required|min:4|max:255',
+            'description' => 'required|max:500',
+            'image' => 'required|url',
+            'price' => 'required|numeric',
+            'series' => 'required|max:100',
+            'date' => 'requiered|date',
+            'type' => 'required|max:100'
+        ]);
         $data = $request->all(); //stesso meccanisco di create
 
         $comic->update($data);//aggiorna value degli attributi (simile al save in create)
